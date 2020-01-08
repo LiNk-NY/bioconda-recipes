@@ -1,0 +1,72 @@
+{% set version = "1.0" %}
+{% set name = "cBioPortalData" %}
+{% set github = "https://github.com/waldronlab/cBioPortalData" %}
+{% set bioc = "3.11" %}
+
+package:
+  name: r-cbioportal
+  version: "{{ version }}"
+
+source:
+  url: "{{ github }}/archive/v{{ version }}.tar.gz"
+
+build:
+  number: 0
+  noarch: generic
+
+# Suggests: BiocStyle, knitr
+requirements:
+  host:
+    - 'bioconductor-genomeinfodb'
+    - 'bioconductor-biocfilecache'
+    - 'bioconductor-genomicranges'
+    - 'bioconductor-iranges'
+    - 'bioconductor-s4vectors'
+    - 'bioconductor-summarizedexperiment'
+    - 'bioconductor-raggedexperiment'
+    - 'bioconductor-rtcgatoolbox'
+    - 'bioconductor-tcgautils'
+    - r-apiclient
+    - r-base
+    - r-httr
+    - r-methods
+    - r-rappdirs
+    - r-readr
+    - r-stats
+    - r-tidyr
+    - r-utils
+  run:
+    - 'bioconductor-genomeinfodb'
+    - 'bioconductor-biocfilecache'
+    - 'bioconductor-genomicranges'
+    - 'bioconductor-iranges'
+    - 'bioconductor-s4vectors'
+    - 'bioconductor-summarizedexperiment'
+    - 'bioconductor-raggedexperiment'
+    - 'bioconductor-rtcgatoolbox'
+    - 'bioconductor-tcgautils'
+    - r-apiclient
+    - r-base
+    - r-httr
+    - r-methods
+    - r-rappdirs
+    - r-readr
+    - r-stats
+    - r-tidyr
+    - r-utils
+
+test:
+  commands:
+    - '$R -e "library(''{{ name }}'')"'
+
+about:
+  dev_url: "{{ github }}"
+  license: AGPL-3
+  summary: 'Exposes and makes available data from the cBioPortal web resources'
+  description: 'The cBioPortalData package takes compressed resources from repositories such as cBioPortal and assembles a MultiAssayExperiment object with Bioconductor classes.'
+
+
+extra:
+  recipe-maintainers:
+    - mr148 
+
